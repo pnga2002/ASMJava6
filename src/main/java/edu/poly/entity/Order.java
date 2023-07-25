@@ -1,6 +1,5 @@
 package edu.poly.entity;
 
-import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 
@@ -18,23 +17,26 @@ import jakarta.persistence.Table;
 import jakarta.persistence.Temporal;
 import jakarta.persistence.TemporalType;
 import lombok.Data;
+
 @SuppressWarnings("serial")
 @Data
 @Entity
-@Table(name = "Product")
-public class Product implements Serializable{
+@Table(name = "Orders")
+public class Order {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	Integer maSP;
-	String tenSP;
-	Double donGia;
-	String moTa;
-	String hinhAnh;
+	Integer id;
+	@Temporal(TemporalType.DATE)
+	@Column(name = "ngayDatHang")
+	Date ngayDatHang = new Date();
+	@Temporal(TemporalType.DATE)
+	@Column(name = "ngayGiaoHang")
+	Date ngayGiaoHang = new Date();
 	@ManyToOne
-	@JoinColumn(name = "maLoai")
-	Category categogy;
-	Integer soLuong;
+	@JoinColumn(name = "maND")
+	Account account;
+	
 	@JsonIgnore
-	@OneToMany(mappedBy = "product")
-	List<OrderDetail> orderDetail;
+	@OneToMany(mappedBy = "order")
+	List<OrderDetail> orderDetails;
 }
