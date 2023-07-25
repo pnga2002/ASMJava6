@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
 <title>Shoppers &mdash; Colorlib e-Commerce Template</title>
 <meta charset="utf-8">
@@ -8,18 +8,18 @@
 
 <link rel="stylesheet"
 	href="https://fonts.googleapis.com/css?family=Mukta:300,400,700">
-<link rel="stylesheet" href="fonts/icomoon/style.css">
+<link rel="stylesheet" href="/fonts/icomoon/style.css">
 
-<link rel="stylesheet" href="css/bootstrap.min.css">
-<link rel="stylesheet" href="css/magnific-popup.css">
-<link rel="stylesheet" href="css/jquery-ui.css">
-<link rel="stylesheet" href="css/owl.carousel.min.css">
-<link rel="stylesheet" href="css/owl.theme.default.min.css">
+<link rel="stylesheet" href="/css/bootstrap.min.css">
+<link rel="stylesheet" href="/css/magnific-popup.css">
+<link rel="stylesheet" href="/css/jquery-ui.css">
+<link rel="stylesheet" href="/css/owl.carousel.min.css">
+<link rel="stylesheet" href="/css/owl.theme.default.min.css">
 
 
-<link rel="stylesheet" href="css/aos.css">
+<link rel="stylesheet" href="/css/aos.css">
 
-<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="/css/style.css">
 
 </head>
 <body>
@@ -81,10 +81,10 @@
 						</div>
 						<div class="row mb-5">
 
-							<div class="col-sm-6 col-lg-4 mb-4" data-aos="fade-up">
+							<div  th:each="item : ${products}" th:object="${item}" class="col-sm-6 col-lg-4 mb-4" data-aos="fade-up">
 								<div class="block-4 text-center border">
 									<figure class="block-4-image">
-										<a href="shop-single.html"><img src="images/cloth_1.jpg"
+										<a th:href="@{/productdetail/{id}(id=${item.maSP})}"><img th:src="'/images/' + ${item.hinhanh}"
 											alt="Image placeholder" class="img-fluid"></a>
 									</figure>
 									<div class="block-4-text p-4">
@@ -96,174 +96,7 @@
 									</div>
 								</div>
 							</div>
-							<div class="col-sm-6 col-lg-4 mb-4" data-aos="fade-up">
-								<div class="block-4 text-center border">
-									<figure class="block-4-image">
-										<a href="shop-single.html"><img src="images/shoe_1.jpg"
-											alt="Image placeholder" class="img-fluid"></a>
-									</figure>
-									<div class="block-4-text p-4">
-										<h3>
-											<a href="shop-single.html">Corater</a>
-										</h3>
-										<p class="mb-0">Finding perfect products</p>
-										<p class="text-primary font-weight-bold">$50</p>
-									</div>
-								</div>
-							</div>
-							<div class="col-sm-6 col-lg-4 mb-4" data-aos="fade-up">
-								<div class="block-4 text-center border">
-									<figure class="block-4-image">
-										<a href="shop-single.html"><img src="images/cloth_2.jpg"
-											alt="Image placeholder" class="img-fluid"></a>
-									</figure>
-									<div class="block-4-text p-4">
-										<h3>
-											<a href="shop-single.html">Polo Shirt</a>
-										</h3>
-										<p class="mb-0">Finding perfect products</p>
-										<p class="text-primary font-weight-bold">$50</p>
-									</div>
-								</div>
-							</div>
-
-							<div class="col-sm-6 col-lg-4 mb-4" data-aos="fade-up">
-								<div class="block-4 text-center border">
-									<figure class="block-4-image">
-										<a href="shop-single.html"><img src="images/cloth_3.jpg"
-											alt="Image placeholder" class="img-fluid"></a>
-									</figure>
-									<div class="block-4-text p-4">
-										<h3>
-											<a href="shop-single.html">T-Shirt Mockup</a>
-										</h3>
-										<p class="mb-0">Finding perfect products</p>
-										<p class="text-primary font-weight-bold">$50</p>
-									</div>
-								</div>
-							</div>
-							<div class="col-sm-6 col-lg-4 mb-4" data-aos="fade-up">
-								<div class="block-4 text-center border">
-									<figure class="block-4-image">
-										<a href="shop-single.html"><img src="images/shoe_1.jpg"
-											alt="Image placeholder" class="img-fluid"></a>
-									</figure>
-									<div class="block-4-text p-4">
-										<h3>
-											<a href="shop-single.html">Corater</a>
-										</h3>
-										<p class="mb-0">Finding perfect products</p>
-										<p class="text-primary font-weight-bold">$50</p>
-									</div>
-								</div>
-							</div>
-							<div class="col-sm-6 col-lg-4 mb-4" data-aos="fade-up">
-								<div class="block-4 text-center border">
-									<figure class="block-4-image">
-										<a href="shop-single.html"><img src="images/cloth_1.jpg"
-											alt="Image placeholder" class="img-fluid"></a>
-									</figure>
-									<div class="block-4-text p-4">
-										<h3>
-											<a href="shop-single.html">Tank Top</a>
-										</h3>
-										<p class="mb-0">Finding perfect t-shirt</p>
-										<p class="text-primary font-weight-bold">$50</p>
-									</div>
-								</div>
-							</div>
-							<div class="col-sm-6 col-lg-4 mb-4" data-aos="fade-up">
-								<div class="block-4 text-center border">
-									<figure class="block-4-image">
-										<a href="shop-single.html"><img src="images/shoe_1.jpg"
-											alt="Image placeholder" class="img-fluid"></a>
-									</figure>
-									<div class="block-4-text p-4">
-										<h3>
-											<a href="shop-single.html">Corater</a>
-										</h3>
-										<p class="mb-0">Finding perfect products</p>
-										<p class="text-primary font-weight-bold">$50</p>
-									</div>
-								</div>
-							</div>
-							<div class="col-sm-6 col-lg-4 mb-4" data-aos="fade-up">
-								<div class="block-4 text-center border">
-									<figure class="block-4-image">
-										<a href="shop-single.html"><img src="images/cloth_2.jpg"
-											alt="Image placeholder" class="img-fluid"></a>
-									</figure>
-									<div class="block-4-text p-4">
-										<h3>
-											<a href="shop-single.html">Polo Shirt</a>
-										</h3>
-										<p class="mb-0">Finding perfect products</p>
-										<p class="text-primary font-weight-bold">$50</p>
-									</div>
-								</div>
-							</div>
-
-							<div class="col-sm-6 col-lg-4 mb-4" data-aos="fade-up">
-								<div class="block-4 text-center border">
-									<figure class="block-4-image">
-										<a href="shop-single.html"><img src="images/cloth_3.jpg"
-											alt="Image placeholder" class="img-fluid"></a>
-									</figure>
-									<div class="block-4-text p-4">
-										<h3>
-											<a href="shop-single.html">T-Shirt Mockup</a>
-										</h3>
-										<p class="mb-0">Finding perfect products</p>
-										<p class="text-primary font-weight-bold">$50</p>
-									</div>
-								</div>
-							</div>
-							<div class="col-sm-6 col-lg-4 mb-4" data-aos="fade-up">
-								<div class="block-4 text-center border">
-									<figure class="block-4-image">
-										<a href="shop-single.html"><img src="images/shoe_1.jpg"
-											alt="Image placeholder" class="img-fluid"></a>
-									</figure>
-									<div class="block-4-text p-4">
-										<h3>
-											<a href="shop-single.html">Corater</a>
-										</h3>
-										<p class="mb-0">Finding perfect products</p>
-										<p class="text-primary font-weight-bold">$50</p>
-									</div>
-								</div>
-							</div>
-							<div class="col-sm-6 col-lg-4 mb-4" data-aos="fade-up">
-								<div class="block-4 text-center border">
-									<figure class="block-4-image">
-										<a href="shop-single.html"><img src="images/cloth_1.jpg"
-											alt="Image placeholder" class="img-fluid"></a>
-									</figure>
-									<div class="block-4-text p-4">
-										<h3>
-											<a href="shop-single.html">Tank Top</a>
-										</h3>
-										<p class="mb-0">Finding perfect t-shirt</p>
-										<p class="text-primary font-weight-bold">$50</p>
-									</div>
-								</div>
-							</div>
-
-							<div class="col-sm-6 col-lg-4 mb-4" data-aos="fade-up">
-								<div class="block-4 text-center border">
-									<figure class="block-4-image">
-										<a href="shop-single.html"><img src="images/cloth_2.jpg"
-											alt="Image placeholder" class="img-fluid"></a>
-									</figure>
-									<div class="block-4-text p-4">
-										<h3>
-											<a href="shop-single.html">Polo Shirt</a>
-										</h3>
-										<p class="mb-0">Finding perfect products</p>
-										<p class="text-primary font-weight-bold">$50</p>
-									</div>
-								</div>
-							</div>
+							
 
 
 						</div>
@@ -356,7 +189,7 @@
 									data-aos="fade" data-aos-delay="">
 									<a class="block-2-item" href="#">
 										<figure class="image">
-											<img src="images/women.jpg" alt="" class="img-fluid">
+											<img src="/images/women.jpg" alt="" class="img-fluid">
 										</figure>
 										<div class="text">
 											<span class="text-uppercase">Collections</span>
@@ -368,7 +201,7 @@
 									data-aos="fade" data-aos-delay="100">
 									<a class="block-2-item" href="#">
 										<figure class="image">
-											<img src="images/children.jpg" alt="" class="img-fluid">
+											<img src="/images/children.jpg" alt="" class="img-fluid">
 										</figure>
 										<div class="text">
 											<span class="text-uppercase">Collections</span>
@@ -380,7 +213,7 @@
 									data-aos="fade" data-aos-delay="200">
 									<a class="block-2-item" href="#">
 										<figure class="image">
-											<img src="images/men.jpg" alt="" class="img-fluid">
+											<img src="/images/men.jpg" alt="" class="img-fluid">
 										</figure>
 										<div class="text">
 											<span class="text-uppercase">Collections</span>
@@ -401,15 +234,15 @@
 		<div th:insert="~{include/_Footer}"></div>
 	</div>
 
-	<script src="js/jquery-3.3.1.min.js"></script>
-	<script src="js/jquery-ui.js"></script>
-	<script src="js/popper.min.js"></script>
-	<script src="js/bootstrap.min.js"></script>
-	<script src="js/owl.carousel.min.js"></script>
-	<script src="js/jquery.magnific-popup.min.js"></script>
-	<script src="js/aos.js"></script>
+	<script src="/js/jquery-3.3.1.min.js"></script>
+	<script src="/js/jquery-ui.js"></script>
+	<script src="/js/popper.min.js"></script>
+	<script src="/js/bootstrap.min.js"></script>
+	<script src="/js/owl.carousel.min.js"></script>
+	<script src="/js/jquery.magnific-popup.min.js"></script>
+	<script src="/js/aos.js"></script>
 
-	<script src="js/main.js"></script>
+	<script src="/js/main.js"></script>
 
 </body>
 </html>

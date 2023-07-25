@@ -3,6 +3,8 @@
 <head>
 <meta charset="ISO-8859-1">
 <title>Insert title here</title>
+
+
 </head>
 <body>
 	<header class="site-navbar" role="banner">
@@ -77,9 +79,9 @@
 					<li class="has-children active"><a href="/home"  th:text="#{nav.home}">Home</a></li>
 					<li class="has-children"><a href="/product"  th:text="#{nav.product}">Product</a>
 						<ul class="dropdown">
-							<li><a href="#">Menu One</a></li>
-							<li><a href="#">Menu Two</a></li>
-							<li><a href="#">Menu Three</a></li>
+							<li th:each="item : ${category}" th:object="${item}">
+ 							<a th:href="@{/category/{id} (id=${item.maloai})}" th:text="${item.tenloai}">Menu One</a>	
+							</li>
 						</ul></li>
 					<li><a href="/admin/index"  th:text="#{nav.manage}">Quản lý</a></li>
 				</ul>

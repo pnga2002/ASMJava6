@@ -27,13 +27,13 @@ public class Product implements Serializable{
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	Integer maSP;
 	String tenSP;
-	Double donGia;
-	String moTa;
-	String hinhAnh;
+	Double dongia;
+	String mota;
+	String hinhanh;
 	@ManyToOne
-	@JoinColumn(name = "maLoai")
-	Category categogy;
-	Integer soLuong;
+	@JoinColumn(name = "maloai")
+	Category category;
+	Integer soluong;
 	@JsonIgnore
 	@OneToMany(mappedBy = "product")
 	List<OrderDetail> orderDetail;
