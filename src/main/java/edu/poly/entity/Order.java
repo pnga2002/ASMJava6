@@ -25,18 +25,18 @@ import lombok.Data;
 public class Order {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	Integer id;
+	Integer maorder;
 	@Temporal(TemporalType.DATE)
-	@Column(name = "ngayDatHang")
+	@Column(name = "ngaydathang")
 	Date ngayDatHang = new Date();
 	@Temporal(TemporalType.DATE)
-	@Column(name = "ngayGiaoHang")
+	@Column(name = "ngaygiaohang")
 	Date ngayGiaoHang = new Date();
 	@ManyToOne
-	@JoinColumn(name = "maND")
+	@JoinColumn(name = "mand")
 	Account account;
-	
+	String trangthai;
 	@JsonIgnore
 	@OneToMany(mappedBy = "order")
-	List<OrderDetail> orderDetails;
+	List<OrderDetail> orderdetails;
 }

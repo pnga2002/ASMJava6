@@ -12,17 +12,17 @@ import lombok.Data;
 @SuppressWarnings("serial")
 @Data
 @Entity
-@Table(name = "OrderDetail")
+@Table(name = "Orderdetail")
 public class OrderDetail {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	Integer maOrderDetail;
-	Integer soLuong;
-	Double donGia;
+	Integer maoderdetail;
+	Integer soluong;
+	Double dongia;
 	@ManyToOne
-	@JoinColumn(name = "maSP")
+	@JoinColumn(name = "masp")
 	Product product;
 	@ManyToOne
-	@JoinColumn(name = "maOrder")
+	@JoinColumn(name = "maorder")
 	Order order;
 }

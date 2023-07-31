@@ -39,12 +39,14 @@
 										</button>
 										<div class="dropdown-menu"
 											aria-labelledby="dropdownMenuOffset">
-											<a class="dropdown-item" href="#"  th:text="#{nav.logout}">Logout</a>
+											<!-- <a  class="dropdown-item" href="/account/login/form"  th:text="#{nav.login}">Login</a> -->
+											<a th:unless="${current !=null}" class="dropdown-item" href="/account/login/form"  th:text="#{nav.login}">Login</a>
+											<a th:if="${current !=null}" class="dropdown-item" href="/account/logout"  th:text="#{nav.logout}">Logout</a>
 										</div>
 									</div>
 								</li>
 								<li><a href="/cart" class="site-cart"> <span
-										class="icon icon-shopping_cart"></span> <span class="count">2</span>
+										class="icon icon-shopping_cart"></span> <span class="count" th:text="${amount}"></span>
 								</a></li>
 								<li>
 									<div class="dropdown mr-1 ml-md-auto">

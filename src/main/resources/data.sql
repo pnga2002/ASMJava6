@@ -1,7 +1,8 @@
-create database asmjava6
+﻿create database asmjava6
 use asmjava6
 create table Account (
-	maND int primary key,
+	maND nvarchar(20) primary key,
+	tenND nvarchar(225),
 	sdt varchar(20),
 	matKhau varchar(20),
 	gioiTinh bit,
@@ -11,6 +12,9 @@ create table Account (
 	isAdmin bit
 )
 
+insert into Account (maND, tenND, sdt, matKhau, gioiTinh, ngaySinh, diaChi, email, isAdmin) values('ND01','Ho Thi Phuong Nga','0944057053','123',0, 01/01/2002, 'quận 12, tphcm','nga@gmail.com',0)
+insert into Account (maND, tenND, sdt, matKhau, gioiTinh, ngaySinh, diaChi, email, isAdmin) values('ND02','Nguyen Truong An','0944989898','123',0, 02/01/2000, 'quận 11, tphcm','an@gmail.com',0)
+insert into Account (maND, tenND, sdt, matKhau, gioiTinh, ngaySinh, diaChi, email, isAdmin) values('ND03','Trinh Duc Bao','0977787878','123',0, 03/01/2003, 'quận 10, tphcm','bao@gmail.com',0)
 
 create table Category(
 	maLoai varchar(20) primary key,
@@ -43,14 +47,15 @@ insert into Product (tenSP,donGia,moTa,hinhAnh,maLoai,soLuong) values ('Laptop L
 
 create table Orders(
 	maOrder int IDENTITY(1,1) primary key,
-	maND int,
+	maND nvarchar(20),
 	ngayDatHang datetime,
-	trangThai bit,
+	trangThai nvarchar(50),
 	ngayGiao datetime,
 	CONSTRAINT fk_orders_account
   FOREIGN KEY (maND)
   REFERENCES Account(maND)
 )
+insert into Orders( maND, ngayDatHang, trangThai, ngayGiao) values ('ND01',01/01/2023,'dagiao',12/01/2023)
 
 create table OrderDetail(
 	maOderDetail int IDENTITY(1,1) primary key,
@@ -61,4 +66,8 @@ create table OrderDetail(
 	CONSTRAINT fk_orderdetail_orrders FOREIGN KEY (maOrder) REFERENCES Orders(maOrder),
 	CONSTRAINT fk_orderdetail_product FOREIGN KEY (maSP) REFERENCES Product(maSP)
 )
+
+insert into OrderDetail( maOrder, maSP, soLuong, donGia) values (1,1,2,11890000)
+insert into OrderDetail( maOrder, maSP, soLuong, donGia) values (1,2,1,20890999)
+
 Select * From Product  Where maloai = 'L01'

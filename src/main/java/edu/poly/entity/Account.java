@@ -20,7 +20,7 @@ import lombok.Data;
 @Table(name = "Account")
 public class Account {
 	@Id
-	Integer maND;
+	String maND;
 	String sdt;
 	String matKhau;
 	Boolean gioiTinh;
