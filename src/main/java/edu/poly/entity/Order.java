@@ -28,10 +28,10 @@ public class Order {
 	Integer maorder;
 	@Temporal(TemporalType.DATE)
 	@Column(name = "ngaydathang")
-	Date ngayDatHang = new Date();
+	Date ngaydathang = new Date();
 	@Temporal(TemporalType.DATE)
 	@Column(name = "ngaygiaohang")
-	Date ngayGiaoHang = new Date();
+	Date ngaygiaohang = new Date();
 	@ManyToOne
 	@JoinColumn(name = "mand")
 	Account account;

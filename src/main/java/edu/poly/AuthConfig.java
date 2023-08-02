@@ -1,10 +1,10 @@
 package edu.poly;
 
-import javax.sql.DataSource;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.authentication.AuthenticationProvider;
+import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -12,15 +12,18 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
 
+import edu.poly.dao.AccountDAO;
+import lombok.RequiredArgsConstructor;
+
 @Configuration
 @EnableWebSecurity
-@EnableMethodSecurity
+@RequiredArgsConstructor
 public class AuthConfig {
-	@Autowired
-	DataSource dataSource;
+	private final UserDetailsService userDetailsService = null;
 	@Bean
 	public BCryptPasswordEncoder passwordEncoder() {
 		return new BCryptPasswordEncoder();
@@ -35,6 +38,7 @@ public class AuthConfig {
 				.rememberMe(remem -> remem.rememberMeParameter("remember"))
 				.logout(logout -> logout.logoutUrl("/account/logout").logoutSuccessUrl("/home"));
 		http.exceptionHandling(ex -> ex.accessDeniedPage("/account/access/denied"));
+		
 		return http.build();
 	}
 	@Bean
@@ -45,12 +49,10 @@ public class AuthConfig {
 						.build());
 	}
 	
-//	 @Autowired
-//	    public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
-//	        auth.jdbcAuthentication()
-//	            .dataSource(dataSource)
-//	            .usersByUsernameQuery("SELECT username, password, enabled FROM users WHERE username = ?")
-//	            .authoritiesByUsernameQuery("SELECT username, 'ROLE_USER' FROM users WHERE username = ?")
-//	            .passwordEncoder(passwordEncoder());
-//	    }
+	
+
+	
+	
+	
+	
 }

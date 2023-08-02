@@ -20,16 +20,16 @@ import lombok.Data;
 @Table(name = "Account")
 public class Account {
 	@Id
-	String maND;
+	String mand;
 	String sdt;
-	String matKhau;
-	Boolean gioiTinh;
+	String matkhau;
+	Boolean gioitinh;
 	@Temporal(TemporalType.DATE)
-	@Column(name = "ngaySinh")
-	Date ngaySinh = new Date();
-	String diaChi;
+	@Column(name = "ngaysinh")
+	Date ngaysinh = new Date();
+	String diachi;
 	String email;
-	Boolean isAdmin;
+	Boolean isadmin;
 	@JsonIgnore
 	@OneToMany(mappedBy = "account")
 	List<Order> orders;

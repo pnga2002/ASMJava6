@@ -6,6 +6,6 @@ import org.springframework.data.jpa.repository.Query;
 import edu.poly.entity.Account;
 
 public interface AccountDAO extends JpaRepository<Account, String>{
-	@Query("Select o from Account o Where o.maND = ?1")
+	@Query("Select o from Account o Where o.mand = ?1")
 	Account findByMaND(String maND);
 }
