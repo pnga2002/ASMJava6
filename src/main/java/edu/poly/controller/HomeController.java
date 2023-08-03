@@ -1,5 +1,7 @@
 package edu.poly.controller;
 
+import java.sql.Date;
+import java.util.Calendar;
 import java.util.List;
 import java.util.Optional;
 
@@ -12,13 +14,18 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import edu.poly.dao.AccountDAO;
 import edu.poly.dao.CategoryDAO;
+import edu.poly.dao.OrderDAO;
 import edu.poly.dao.OrderDetailDAO;
 import edu.poly.dao.ProductDAO;
+import edu.poly.entity.Account;
 import edu.poly.entity.Category;
+import edu.poly.entity.Order;
 import edu.poly.entity.OrderDetail;
 import edu.poly.entity.Product;
 import edu.poly.service.SessionService;
@@ -36,6 +43,10 @@ public class HomeController {
 	HttpServletRequest request;
 	@Autowired
 	CategoryDAO categorydao;
+	@Autowired
+	OrderDAO orderDao;
+	@Autowired
+	AccountDAO accDao;
 	
 	@ModelAttribute("current")
 	public String request(Model model, HttpServletRequest request) {
@@ -102,6 +113,41 @@ public class HomeController {
 		model.addAttribute("carts",listCart);
 		System.out.println(listCart);
 		return "cart";
+	}
+	@PostMapping("/addcart")
+	public String addcast(Model model,
+			@RequestParam("masp") Integer masp,
+			@RequestParam("soluong") Integer soluong) {
+		long millis=System.currentTimeMillis();
+		Date date= new Date(millis); 
+		String maND = request.getRemoteUser();
+		Account acc = accDao.findByMaND(maND);
+		Order cart = new Order();
+		cart.setAccount(acc);
+		cart.setNgaydathang(date);
+		cart.setTrangthai("gioHang");
+		orderDao.save(cart);
+		OrderDetail cartItem = new OrderDetail();
+		
+			cartItem.setOrder(cart);
+			cartItem.setSoluong(soluong);
+			cartItem.setProduct(productdao.findOneById(masp));
+			int amount=orderDetailDao.getAmount(request.getRemoteUser());
+			session.setAttribute("amount", amount);
+			orderDetailDao.save(cartItem);
+			List<Object[]> listCart= orderDetailDao.getAllInforWithUserName(maND);
+//			double total=orderDetailDao.getToTal(maND); 
+			model.addAttribute("carts", listCart);
+//			model.addAttribute("total", total);
+		
+		return "redirect:/cart";
+	}
+	@RequestMapping("removeCartItem/{cartId}")
+	public String removeCartItem(Model mode, @PathVariable("cartId") Integer id) {
+		orderDetailDao.deleteById(id);
+		int amount=orderDetailDao.getAmount(request.getRemoteUser());
+		session.setAttribute("amount",amount);
+		return "redirect:/cart";
 	}
 	@RequestMapping("/productdetail/{id}")
 	public String productdetail(Model model, @PathVariable("id") Integer id) {

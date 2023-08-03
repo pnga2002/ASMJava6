@@ -57,7 +57,7 @@
 								<tbody>
 									<tr th:each="item :${carts}" th:object="${item}">
 										<td class="product-thumbnail"><img
-											th:src="'/images/' + ${item[1]}"alt="Image" class="img-fluid">
+											th:src="'/images/' + ${item[2]}"alt="Image" class="img-fluid">
 										</td>
 										<td class="product-name">
 											<h2 class="h5 text-black">Top Up T-Shirt</h2>
@@ -81,7 +81,7 @@
 
 										</td>
 										<td>$49.00</td>
-										<td><a href="#" class="btn btn-primary btn-sm">X</a></td>
+										<td><a th:href="@{/removeCartItem/{id}(id=${item[5]})}" class="btn btn-primary btn-sm">X</a></td>
 									</tr>
 
 									

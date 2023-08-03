@@ -23,7 +23,7 @@ import lombok.RequiredArgsConstructor;
 @EnableWebSecurity
 @RequiredArgsConstructor
 public class AuthConfig {
-	private final UserDetailsService userDetailsService = null;
+//	private final UserDetailsService userDetailsService;
 	@Bean
 	public BCryptPasswordEncoder passwordEncoder() {
 		return new BCryptPasswordEncoder();
@@ -38,16 +38,48 @@ public class AuthConfig {
 				.rememberMe(remem -> remem.rememberMeParameter("remember"))
 				.logout(logout -> logout.logoutUrl("/account/logout").logoutSuccessUrl("/home"));
 		http.exceptionHandling(ex -> ex.accessDeniedPage("/account/access/denied"));
-		
+//		http.csrf(csrf -> csrf.disable()).authorizeHttpRequests(auth -> auth
+//		        .requestMatchers("/cart/**").hasAnyAuthority("USER", "ADMIN")
+//		        .anyRequest().permitAll()
+//		    )
+//	  .oauth2Login(auth -> auth.loginPage("/account/login/form")
+//			  .defaultSuccessUrl("/account/login/success", true)
+//			  
+//			  .authorizationEndpoint( t -> t.baseUri("/oauth2/authorization")
+//					  
+//					  )
+//			  )
+//
+//			.formLogin(form -> form.loginPage("/account/login/form").loginProcessingUrl("/account/login/form")
+//					.defaultSuccessUrl("/home", true)
+//					)
+//			;
 		return http.build();
 	}
 	@Bean
   UserDetailsService userDetailManager() {    	
 		return new InMemoryUserDetailsManager(
 				User.withUsername("ND01").password(passwordEncoder().encode("123")).roles("USER").build(),
+				User.withUsername("ND02").password(passwordEncoder().encode("123")).roles("USER").build(),
+				User.withUsername("ND03").password(passwordEncoder().encode("123")).roles("USER").build(),
+				
+				
 				User.withUsername("AD01").password(passwordEncoder().encode("123")).roles("USER", "ADMIN")
 						.build());
 	}
+//	@Bean
+//	public DaoAuthenticationProvider daoAuthenticationProvider() {
+//		DaoAuthenticationProvider daoAuthenticationProvider = new DaoAuthenticationProvider();
+//		daoAuthenticationProvider.setUserDetailsService(userDetailsService);
+//		daoAuthenticationProvider.setPasswordEncoder(passwordEncoder());
+//		return daoAuthenticationProvider;
+//	}
+//
+//
+//	public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
+//		auth.userDetailsService(userDetailsService).passwordEncoder(passwordEncoder());
+//	}
+
 	
 	
 

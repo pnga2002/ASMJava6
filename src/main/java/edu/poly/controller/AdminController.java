@@ -10,7 +10,7 @@ import jakarta.servlet.http.HttpServletRequest;
 public class AdminController {
 	@GetMapping("/admin/index")
 	public String index(Model model, HttpServletRequest request) {
-		if(request.getRemoteUser()!="admin") {
+		if(!request.isUserInRole("ADMIN")) {
 			return "redirect:/account/access/denied";
 		}
 		System.out.println(request.getRemoteUser());
