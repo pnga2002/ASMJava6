@@ -1,6 +1,7 @@
 package edu.poly.controller;
 
 import java.sql.Date;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 import java.util.Optional;
@@ -15,6 +16,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -90,6 +92,8 @@ public class HomeController {
 		List<Object[]> listCart= orderDetailDao.getAllInforWithUserName(maND);
 		model.addAttribute("carts",listCart);
 		System.out.println(request.getRemoteUser());
+		double total=orderDetailDao.getToTal(maND); 
+		model.addAttribute("total", total);
 		return "cart";
 	}
 	@RequestMapping("/cart/dangGiao")
@@ -114,6 +118,7 @@ public class HomeController {
 		System.out.println(listCart);
 		return "cart";
 	}
+	@SuppressWarnings("null")
 	@PostMapping("/addcart")
 	public String addcast(Model model,
 			@RequestParam("masp") Integer masp,
@@ -123,10 +128,16 @@ public class HomeController {
 		String maND = request.getRemoteUser();
 		Account acc = accDao.findByMaND(maND);
 		Order cart = new Order();
-		cart.setAccount(acc);
-		cart.setNgaydathang(date);
-		cart.setTrangthai("gioHang");
-		orderDao.save(cart);
+//		Order cart = orderDao.findByMaND(maND);
+		
+//		if(cart==null) {
+			System.out.println(cart.getTrangthai());
+			cart.setAccount(acc);
+			cart.setAccount(acc);
+			cart.setNgaydathang(date);
+			cart.setTrangthai("gioHang");
+			orderDao.save(cart);
+//		}
 		OrderDetail cartItem = new OrderDetail();
 		
 			cartItem.setOrder(cart);
@@ -141,6 +152,26 @@ public class HomeController {
 //			model.addAttribute("total", total);
 		
 		return "redirect:/cart";
+	}
+	@PostMapping("/updateCart")
+	public String updateCart(Model model,
+			@RequestParam("maorderdetail") Integer maorderdetail,
+			@RequestParam("masp") Integer masp,
+			@RequestParam("soluong") Integer soluong) {
+		OrderDetail detail = orderDetailDao.getBymaoderdetail(maorderdetail);
+		detail.setSoluong(soluong);
+		orderDetailDao.save(detail);
+		return "cart";
+	}
+	@PostMapping("/orderCart")
+	public String orderCart(Model model,
+			@RequestParam("maOrder") Integer maOrder) {
+			Order order = orderDao.findByMaOrder(maOrder);
+			System.out.println(order.getTrangthai());
+			order.setTrangthai("dangGiao");
+			orderDao.save(order);
+		
+		return "cart";
 	}
 	@RequestMapping("removeCartItem/{cartId}")
 	public String removeCartItem(Model mode, @PathVariable("cartId") Integer id) {
