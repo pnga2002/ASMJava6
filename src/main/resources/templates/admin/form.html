@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>User Form</title>
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<!-- Thêm link CSS của Bootstrap vào phần head -->
+
+</head>
+<body>
+	<div class="container">
+		<h1>User Form</h1>
+		<form action="#" th:object="${form}" method="post">
+			<div class="form-group">
+				<label for="mand">MaND:</label> <input type="text"
+					class="form-control" th:field="*{mand}">
+			</div>
+			<div class="form-group">
+				<label for="sdt">SDT:</label> <input type="number" id="sdt"
+					class="form-control" th:field="*{sdt}">
+			</div>
+			<div class="form-group">
+				<label for="matkhau">Mật khẩu:</label> <input type="password"
+					id="matkhau" class="form-control" th:field="*{matkhau}">
+			</div>
+			<div class="form-group">
+				<label>Gender:</label>
+				<div class="form-check form-check-inline">
+					<input type="radio" id="male" class="form-check-input"
+						value="false" th:field="*{gioitinh}"> <label for="male"
+						class="form-check-label">Male</label>
+				</div>
+				<div class="form-check form-check-inline">
+					<input type="radio" id="female" class="form-check-input"
+						value="true" th:field="*{gioitinh}"> <label for="female"
+						class="form-check-label">Female</label>
+				</div>
+			</div>
+			<div class="form-group">
+				<label for="ngaysinh">Ngày sinh:</label> <input type="date"
+					id="ngaysinh" class="form-control" th:field="*{ngaysinh}">
+			</div>
+			<div class="form-group">
+				<label for="diachi">Địa chỉ:</label> <input type="text" id="diachi"
+					class="form-control" th:field="*{diachi}">
+			</div>
+			<div class="form-group">
+				<label for="email">Email:</label> <input type="email" id="email"
+					class="form-control" th:field="*{email}">
+			</div>
+
+			<button type="submit" class="btn btn-primary"
+				th:formaction="@{/admin/create}">Create</button>
+			<button type="submit" class="btn btn-warning"
+				th:formaction="@{|/admin/update/*{mand}|}">Update</button>
+			<button type="submit" class="btn btn-danger"
+				th:formaction="@{|/admin/delete/*{mand}|}">Delete</button>
+			<button type="submit" class="btn btn-secondary"
+				th:formaction="@{/admin/reset}">Reset</button>
+		</form>
+	</div>
+</body>
+</html>

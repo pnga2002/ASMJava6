@@ -22,12 +22,10 @@ import lombok.Data;
 public class Account {
 	@Id
 	String mand;
+	String tennd;
 	String sdt;
 	String matkhau;
 	Boolean gioitinh;
-	@Temporal(TemporalType.DATE)
-	@Column(name = "ngaysinh")
-	Date ngaysinh = new Date();
 	String diachi;
 	String email;
 	Boolean isadmin;
