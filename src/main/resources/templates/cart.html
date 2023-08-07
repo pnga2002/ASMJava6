@@ -58,12 +58,13 @@
 								</thead>
 								<tbody>
 									<tr th:each="item :${carts}" th:object="${item}">
-										<td> <input type="checkbox"> </td>
+										<td><input type="checkbox"></td>
 										<td class="product-thumbnail"><img
-											th:src="'/images/' + ${item[2]}"alt="Image" class="img-fluid">
-										</td>
+											th:src="'/images/' + ${item[2]}" alt="Image"
+											class="img-fluid"></td>
 										<td class="product-name">
-											<h2 class="h5 text-black" th:text="${item[0]}">Top Up T-Shirt</h2>
+											<h2 class="h5 text-black" th:text="${item[0]}">Top Up
+												T-Shirt</h2>
 										</td>
 										<td th:text="${item[3]}">$49.00</td>
 										<td>
@@ -75,8 +76,7 @@
 												<input type="text" class="form-control text-center"
 													th:value="${item[4]}" placeholder=""
 													aria-label="Example text with button addon"
-													aria-describedby="button-addon1"
-													id="soLuong">
+													aria-describedby="button-addon1" id="soLuong">
 												<div class="input-group-append">
 													<button class="btn btn-outline-primary js-btn-plus"
 														type="button">&plus;</button>
@@ -85,19 +85,21 @@
 
 										</td>
 										<td th:text="${item[3]} * ${item[4]}"></td>
-										<td style="padding: 0">
-											<a th:href="@{/removeCartItem/{id}(id=${item[5]})}" class="btn btn-danger">X</a>
-											<button th:attr="onclick=|updateCart(${item[1]},${item[4]},${item[5]})|" class="btn btn-success">
+										<td style="padding: 0"><a
+											th:href="@{/removeCartItem/{id}(id=${item[5]})}"
+											class="btn btn-danger">X</a>
+											<button
+												th:attr="onclick=|updateCart(${item[1]},${item[4]},${item[5]})|"
+												class="btn btn-success">
 												<span class="icon icon-edit"></span>
-											</button>
-											
-										</td>
+											</button></td>
 										<td>
-											<button th:attr="onclick=|orderCart(${item[6]})|" class="btn btn-info btn-sm">Order</button>
+											<button th:attr="onclick=|orderCart(${item[6]})|"
+												class="btn btn-info btn-sm">Order</button>
 										</td>
 									</tr>
 
-									
+
 								</tbody>
 							</table>
 						</div>
@@ -108,16 +110,17 @@
 					<div class="col-md-6">
 						<div class="row">
 							<div class="col-md-12">
-								<label class="text-black h4" for="coupon" >Lịch Sử mua hàng</label>
+								<label class="text-black h4" for="coupon">Lịch Sử mua
+									hàng</label>
 								<p>Xem lại các sản phẩm bạn đã từng mua</p>
 							</div>
 							<div class="col-md-8 mb-3 mb-md-0">
 								<p>Đơn đặt hàng</p>
-								<a href="/cart/dangGiao" class="btn btn-primary btn-sm" >Xem</a>
+								<a href="/cart/dangGiao" class="btn btn-primary btn-sm">Xem</a>
 							</div>
 							<div class="col-md-4">
 								<p>Đã hoàn thành</p>
-								<a href="/cart/daGiao" class="btn btn-primary btn-sm" >Xem</a>
+								<a href="/cart/daGiao" class="btn btn-primary btn-sm">Xem</a>
 							</div>
 						</div>
 					</div>
@@ -134,7 +137,7 @@
 										<span class="text-black">Quantity</span>
 									</div>
 									<div class="col-md-6 text-right">
-										<strong class="text-black" th:text="${amount}" ></strong>
+										<strong class="text-black" th:text="${amount}"></strong>
 									</div>
 								</div>
 								<div class="row mb-5">
@@ -142,14 +145,14 @@
 										<span class="text-black">Total</span>
 									</div>
 									<div class="col-md-6 text-right">
-										<strong class="text-black" th:text="${total}"></strong>
+											<strong class="text-black" th:text="${total}"></strong>
 									</div>
 								</div>
 
 								<div class="row">
 									<div class="col-md-12">
-										<a href="/home" class="btn btn-primary btn-lg py-3 btn-block"
-											>Back to shop</a>
+										<a href="/home" class="btn btn-primary btn-lg py-3 btn-block">Back
+											to shop</a>
 									</div>
 								</div>
 							</div>
@@ -172,7 +175,7 @@
 
 	<script src="/js/main.js"></script>
 
-<script type="text/javascript">
+	<script type="text/javascript">
 	$(document).ready(function() {
 		updateCart=(masp,soLuong,madetail)=>{
      		var quantityCartItem = document.getElementById("soLuong").value;

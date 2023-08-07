@@ -7,4 +7,6 @@ import edu.poly.entity.Category;
 
 public interface CategoryDAO extends JpaRepository<Category, String>{
 	
+
+	Category findByMaloai(String maloai);
 }

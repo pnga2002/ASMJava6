@@ -62,6 +62,9 @@ public class AuthConfig {
 				User.withUsername("ND01").password(passwordEncoder().encode("123")).roles("USER").build(),
 				User.withUsername("ND02").password(passwordEncoder().encode("123")).roles("USER").build(),
 				User.withUsername("ND03").password(passwordEncoder().encode("123")).roles("USER").build(),
+				User.withUsername("ND04").password(passwordEncoder().encode("123")).roles("USER").build(),
+				User.withUsername("ND05").password(passwordEncoder().encode("123")).roles("USER").build(),
+				User.withUsername("ND06").password(passwordEncoder().encode("123")).roles("USER").build(),
 				
 				
 				User.withUsername("AD01").password(passwordEncoder().encode("123")).roles("USER", "ADMIN")

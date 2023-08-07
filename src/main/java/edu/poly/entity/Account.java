@@ -22,6 +22,7 @@ import lombok.Data;
 public class Account {
 	@Id
 	String mand;
+	String tennd;
 	String sdt;
 	String matkhau;
 	Boolean gioitinh;

@@ -15,12 +15,15 @@ create table Account (
 insert into Account (maND, tenND, sdt, matKhau, gioiTinh, ngaySinh, diaChi, email, isAdmin) values('ND01','Ho Thi Phuong Nga','0944057053','123',0, 01/01/2002, 'quận 12, tphcm','nga@gmail.com',0)
 insert into Account (maND, tenND, sdt, matKhau, gioiTinh, ngaySinh, diaChi, email, isAdmin) values('ND02','Nguyen Truong An','0944989898','123',0, 02/01/2000, 'quận 11, tphcm','an@gmail.com',0)
 insert into Account (maND, tenND, sdt, matKhau, gioiTinh, ngaySinh, diaChi, email, isAdmin) values('ND03','Trinh Duc Bao','0977787878','123',0, 03/01/2003, 'quận 10, tphcm','bao@gmail.com',0)
+insert into Account (maND, tenND, sdt, matKhau, gioiTinh, ngaySinh, diaChi, email, isAdmin) values('ND05','Vu Dinh Khang','0977787878','123',0, 03/01/2003, 'quận 10, tphcm','bao@gmail.com',0)
+insert into Account (maND, tenND, sdt, matKhau, gioiTinh, ngaySinh, diaChi, email, isAdmin) values('ND04','Lai Van Sam','0977787878','123',0, 03/01/2003, 'quận 10, tphcm','bao@gmail.com',0)
 
 insert into Account (maND, tenND, sdt, matKhau, gioiTinh, ngaySinh, diaChi, email, isAdmin) values('AD01','Ha Thanh Liem','0977787111','123',0, 03/01/2003, 'quận 11, tphcm','bao@gmail.com',1)
 
 create table Category(
 	maLoai varchar(20) primary key,
 	tenLoai nvarchar(50)
+
 )
 insert into Category (maLoai, tenLoai) values('L01','Lenovo');
 insert into Category (maLoai, tenLoai) values('L02','ASUS');
@@ -81,3 +84,6 @@ insert into OrderDetail( maOrder, maSP, soLuong, donGia) values (1,2,1,20890999)
 
 insert into OrderDetail( maOrder, maSP, soLuong, donGia) values (2,3,2,13990000)
 insert into OrderDetail( maOrder, maSP, soLuong, donGia) values (2,4,1,17890999)
+select  *from orders
+delete from product where masp=22
+select sum(d.soluong * d.dongia) from orders o inner join OrderDetail d on o.maOrder = d.maOrder where trangthai='dagiao' and o.ngayGiao  between 2011/02/25 and 2011/02/27
