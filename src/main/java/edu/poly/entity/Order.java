@@ -37,6 +37,8 @@ public class Order {
 	@JoinColumn(name = "mand")
 	Account account;
 	String trangthai;
+	String diachi;
+	String tennguoinhan;
 	@JsonIgnore
 	@OneToMany(mappedBy = "order",fetch = FetchType.EAGER)
 	List<OrderDetail> orderdetails;

@@ -140,7 +140,7 @@
 											<a th:href="@{/productdetail/{id}(id=${item.maSP})}" th:text="${item.tenSP}">Tank Top</a>
 										</h3>
 										<p class="mb-0" th:text="${item.mota}">Finding perfect t-shirt</p>
-										<p class="text-primary font-weight-bold" th:text="${item.dongia} + 'VND'">$50</p>
+										<p class="text-primary font-weight-bold" th:text="${#numbers.formatDecimal(item.dongia, 0, 'COMMA', 0, 'POINT')} + 'VND'">$50</p>
 									</div>
 								</div>
 							</div>

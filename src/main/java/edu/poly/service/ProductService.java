@@ -22,7 +22,7 @@ public class ProductService {
         return productRepository.findAll();
     }
     
-    public Product createProduct(String tenSP, Double gia,String mota, String hinhanh,String maloai,Integer soluong) {
+    public Product createProduct(String tenSP, Double gia,String mota, String hinhanh,String maloai,Integer soluong,String baohanh,String thehecpu,String cpu,String chipdohoa, String ram,String manhinh) {
         Category category = categoryRepository.findById(maloai).orElse(null);
         if (category == null) {
             // Handle error when category is not found
@@ -35,6 +35,12 @@ public class ProductService {
         product.setHinhanh(hinhanh);
         product.setCategory(category);
         product.setSoluong(soluong);
+        product.setBaohanh(baohanh);
+        product.setThehecpu(thehecpu);
+        product.setCpu(cpu);
+        product.setChipdohoa(chipdohoa);
+        product.setRam(ram);
+        product.setManhinh(manhinh);
         return productRepository.save(product);
     }
     public Product getEmployeeById(Integer id) {

@@ -71,6 +71,15 @@ private final ProductService productService;
 //		model.addAttribute("totalMonth",tongMonth);
 		model.addAttribute("message", "Hello Authenticated User");
 		model.addAttribute("request", request);
+		Integer totalDagiao = orderDao.totalDagiao("dagiao");
+		Integer totalDanggiao = orderDao.totalDagiao("dangGiao");
+
+		Integer totalGioHang = orderDao.totalDagiao("giohang");
+
+		model.addAttribute("totalDangGiao", totalDanggiao);
+		model.addAttribute("totalDaGiao", totalDagiao);
+		model.addAttribute("totalGioHang", totalGioHang);
+		
 		return "admin/index";
 	}
 	@GetMapping("/admin/product")
@@ -100,11 +109,17 @@ private final ProductService productService;
 			@RequestParam("mota") String mota,
 			@RequestParam("hinhanh") String hinhanh,
 			@RequestParam("category") Category category,
-			@RequestParam("soluong") Integer soluong) {
+			@RequestParam("soluong") Integer soluong,
+			@RequestParam("baohanh") String baohanh,
+			@RequestParam("thehecpu") String thehecpu,
+			@RequestParam("cpu") String cpu,
+			@RequestParam("chipdohoa") String chipdohoa,
+			@RequestParam("ram") String ram,
+			@RequestParam("manhinh") String manhinh) {
 		if(maSP==0) {
 			Product product = new Product();
 		model.addAttribute("product", product);
-		productService.createProduct(tenSP, dongia,mota,hinhanh,category.getMaloai(), soluong);
+		productService.createProduct(tenSP, dongia,mota,hinhanh,category.getMaloai(), soluong,baohanh,thehecpu,cpu,chipdohoa,ram,manhinh);
 		List<Product> prod = productdao.findAll();
 		model.addAttribute("products",prod);
 		System.out.println(category.getMaloai());

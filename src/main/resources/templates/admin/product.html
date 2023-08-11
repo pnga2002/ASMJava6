@@ -349,45 +349,60 @@
 									cellspacing="0">
 									<thead>
 										<tr>
-											<th>Product ID</th>
+											<!--<th>Product ID</th>  -->
 											<th>Name</th>
 											<th>Image</th>
 											<th>Price</th>
 											<th>Category</th>
 											<th>Decription</th>
-											<th>Action</th>
+											<th>Chip đồ họa</th>
+											<th>RAM</th>
+											<th>Man Hinh</th>
+											<th>Thế hệ CPU</th>
+											<th>CPU</th>
+											<th>Action</th>	
 										</tr>
 									</thead>
 									<tfoot>
 										<tr>
-											<th>Product ID</th>
-											<th>Name</th>
+<!-- 											<th>Product ID</th>
+ -->											<th>Name</th>
 											<th>Image</th>
 											<th>Price</th>
 											<th>Category</th>
 											<th>Decription</th>
+											<th>Chip đồ họa</th>
+											<th>RAM</th>
+											<th>Man Hinh</th>
+											<th>Thế hệ CPU</th>
+											<th>CPU</th>
 											<th>Action</th>
 										</tr>
 									</tfoot>
 									<tbody>
 
 										<tr th:each="item : ${products}" th:object="${item}">
-											<td><a
+											<!-- <td><a
 												th:href="@{/admin/products/detail?(id=${item.maSP})}"
-												th:text="${item.maSP}"></a></td>
+												th:text="${item.maSP}"></a></td> -->
 											<td th:text="${item.tenSP}"></td>
 											<td><img class="w-100" alt="Hinh anh"
 												th:src="'/images/' + ${item.hinhanh}"></td>
-											<td th:text="${item.dongia}"></td>
-											<td th:text="${item.category.maloai}"></td>
+											<td th:text="${#numbers.formatDecimal(item.dongia, 0, 'COMMA', 0, 'POINT')} + 'VND'"></td>
+											<td th:text="${item.category.tenloai}"></td>
 											<td th:text="${item.mota}"></td>
+											<td th:text="${item.chipdohoa}"></td>
+											<td th:text="${item.ram}"></td>
+											<td th:text="${item.manhinh}"></td>
+											<td th:text="${item.thehecpu}"></td>
+											<td th:text="${item.cpu}"></td>
 											<td><a
 												th:href="@{/admin/products/del/{id}(id=${item.maSP})}"
 												class="btn btn-danger"> <i class="fa fa-trash"></i>
 											</a> <adata-toggle="modal"
 													data-toggle="modal"
 									data-target="#myModal"
-													th:attr="onclick=|edit(${item.maSP},'${item.tenSP}','${item.hinhanh}','${item.mota}')|"
+													th:attr="onclick=|edit(${item.maSP},'${item.tenSP}','${item.hinhanh}','${item.mota}','${item.soluong}','${item.baohanh}','${item.thehecpu}','${item.chipdohoa}')|"
 													class="btn btn-warning"> <i class="fa fa-edit"></i>
 											</a></td>
 										</tr>
@@ -504,7 +519,7 @@
 									id="mota" class="form-control input-sm"
 									placeholder="Mô tả">
 							</div>
-							<span class="sp-thongbao" id="motaa"></span>
+							<span class="sp-thongbao"  ></span>
 						</div>
 
 						<div class="form-group">
@@ -525,7 +540,7 @@
 									<span class="input-group-text"><i class="fa fa-money"
 										aria-hidden="true"></i></span>
 								</div>
-								<select th:name="category" type="text" name="category" id="price"
+								<select th:name="category" type="text" name="category" id="category"
 									class="form-control input-sm" placeholder="category">
 									
 									<option th:each="cate : ${category}" th:object="${cate}" th:text="${cate.maloai}"></option>
@@ -539,14 +554,80 @@
 									<span class="input-group-text"><i class="fa fa-clock-o"
 										aria-hidden="true"></i></span>
 								</div>
-								<input type="text" th:name="soluong" id="soluong"
+								<input type="text" th:name="soluong" name="soluong" id="soluong"
 									class="form-control input-sm" placeholder="Số lượng">
 							</div>
 							<span class="sp-thongbao" id="available"></span>
 						</div>
+						<div class="form-group">
+							<div class="input-group">
+								<div class="input-group-prepend">
+									<span class="input-group-text"><i class="fa fa-key"></i></span>
+								</div>
+								<input type="text" th:name="baohanh" name="baohanh"
+									id="baohanh" class="form-control input-sm"
+									placeholder="Bảo hành">
+							</div>
+							<span class="sp-thongbao"  ></span>
+						</div>
+						<div class="form-group">
+							<div class="input-group">
+								<div class="input-group-prepend">
+									<span class="input-group-text"><i class="fa fa-key"></i></span>
+								</div>
+								<input type="text" th:name="thehecpu" name="thehecpu"
+									id="thehecpu" class="form-control input-sm"
+									placeholder="Thế hệ CPU">
+							</div>
+							<span class="sp-thongbao" id="motaa"></span>
+						</div>
+						<div class="form-group">
+							<div class="input-group">
+								<div class="input-group-prepend">
+									<span class="input-group-text"><i class="fa fa-key"></i></span>
+								</div>
+								<input type="text" th:name="cpu" name="cpu"
+									id="cpu" class="form-control input-sm"
+									placeholder="CPU">
+							</div>
+							<span class="sp-thongbao" ></span>
+						</div>
+						<div class="form-group">
+							<div class="input-group">
+								<div class="input-group-prepend">
+									<span class="input-group-text"><i class="fa fa-key"></i></span>
+								</div>
+								<input type="text" th:name="chipdohoa" name="chipdohoa"
+									id="chipdohoa" class="form-control input-sm"
+									placeholder="Chip đồ họa">
+							</div>
+							<span class="sp-thongbao" ></span>
+						</div>
+						<div class="form-group">
+							<div class="input-group">
+								<div class="input-group-prepend">
+									<span class="input-group-text"><i class="fa fa-key"></i></span>
+								</div>
+								<input type="text" th:name="ram" name="ram"
+									id="ram" class="form-control input-sm"
+									placeholder="RAM">
+							</div>
+							<span class="sp-thongbao" id="motaa"></span>
+						</div>
+						<div class="form-group">
+							<div class="input-group">
+								<div class="input-group-prepend">
+									<span class="input-group-text"><i class="fa fa-key"></i></span>
+								</div>
+								<input type="text" th:name="manhinh" name="manhinh"
+									id="manhinh" class="form-control input-sm"
+									placeholder="Màn hình">
+							</div>
+							<span class="sp-thongbao" ></span>
+						</div>
 						<div class="modal-footer" id="modal-footer">
-							<button id="btnThemNV" class="btn btn-success">Thêm
-								người dùng</button>
+							<button id="btnThemNV" class="btn btn-success">Thêm/Sửa
+								Sản phẩm</button>
 							<button id="btnDong" type="button" class="btn btn-danger"
 								data-dismiss="modal">Đóng</button>
 						</div>
@@ -579,11 +660,18 @@
 	<script type="text/javascript">
 $(document).ready(function() {
 		
-		edit=(ma , ten ,anh,mota)=>{
+		edit=(ma , ten ,anh,mota,soluong,baohanh,thehecpu,chip,ram)=>{
 			document.getElementById("masp").value = ma;
 			document.getElementById("tensp").value = ten;
 			document.getElementById("mota").value = mota;
 			document.getElementById("hinh").file = anh;
+			document.getElementById("baohanh").value = baohanh;
+			document.getElementById("soluong").value = soluong;
+			document.getElementById("thehecpu").value = thehecpu;
+
+			document.getElementById("chipdohoa").value = chip;
+
+			console.log()
 
 			document.getElementById("masp").readOnly = true
      	}

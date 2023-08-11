@@ -54,7 +54,7 @@
 							veritatis nesciunt doloremque sint asperiores fuga voluptas,
 							distinctio, aperiam, ratione dolore.</p>
 
-						<strong class="text-primary h4" th:text="${product.dongia}">$50.00</strong>
+						<strong class="text-primary h4" th:text="${#numbers.formatDecimal(product.dongia, 0, 'COMMA', 0, 'POINT')} + 'VND'">$50.00</strong>
 						</p>
 						<div class="mb-5">
 							<div class="input-group mb-3" style="max-width: 120px;">
@@ -76,7 +76,47 @@
 							<button th:attr="onclick=|addcart(${product.maSP})|"  class="buy-now btn btn-sm btn-primary">Add
 								To Cart</button>
 						</p>
-
+						
+					</div>
+					
+				</div>
+				<div class="row">
+					<div class="col-md-6">
+						<h4 th:text="${product.mota}"></h4>
+						<img alt="" th:src="'/images/' + ${product.hinhanh}">
+						<h4 th:text="${product.mota}"></h4>
+					</div>
+					<div class="col-md-6">
+						<table class="table">
+						<h3>Thông tin chi tiết</h3>
+        <tbody>
+          <tr class="">
+            <td scope="row">Bao hanh</td>
+            <td th:text="${product.baohanh}"></td>
+          </tr>
+          <tr class="">
+            <td scope="row">Thế hệ CPU</td>
+            <td th:text="${product.thehecpu}"></td>
+          </tr>
+          <tr class="">
+            <td scope="row">CPU</td>
+            <td th:text="${product.cpu}"></td>
+          </tr>
+          <tr class="">
+            <td scope="row">Chip đồ họa</td>
+            <td th:text="${product.chipdohoa}"></td>
+          </tr>
+          <tr class="">
+            <td scope="row">RAM</td>
+            <td th:text="${product.ram}"></td>
+          </tr>
+          <tr class="">
+            <td scope="row">Màn hình</td>
+            <td th:text="${product.manhinh}"></td>
+          </tr>
+        </tbody>
+      </table>
+						
 					</div>
 				</div>
 			</div>

@@ -56,7 +56,7 @@ public interface OrderDetailDAO extends JpaRepository<OrderDetail, Integer>{
 			+ "Where c.trangthai = 'dagiao'"
 			+ "and c.ngaygiaohang between ?1 and ?2")
 	Double getToTalMonth(Date d1, Date d2);
-	@Query("Select p.tenSP,p.maSP, p.hinhanh, p.dongia, ci.soluong, ci.maoderdetail,c.maorder,c.trangthai From OrderDetail ci "
+	@Query("Select p.tenSP,p.maSP, p.hinhanh, p.dongia, ci.soluong, ci.maoderdetail,c.maorder,c.trangthai,c.diachi,c.tennguoinhan From OrderDetail ci "
 			+ "Join Order c On ci.order.maorder = c.maorder "
 			+ "Join Account u On c.account.mand = u.mand "
 			+ "Join Product p on p.maSP = ci.product.maSP"

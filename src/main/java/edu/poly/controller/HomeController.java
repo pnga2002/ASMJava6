@@ -92,6 +92,7 @@ public class HomeController {
 		List<Object[]> listCart= orderDetailDao.getAllInforWithUserName(maND);
 		model.addAttribute("carts",listCart);
 		System.out.println(request.getRemoteUser());
+		
 		double total=orderDetailDao.getToTal(maND); 
 		model.addAttribute("total", total);
 		return "cart";
@@ -165,10 +166,15 @@ public class HomeController {
 	}
 	@PostMapping("/orderCart")
 	public String orderCart(Model model,
-			@RequestParam("maOrder") Integer maOrder) {
+			@RequestParam("maOrder") Integer maOrder,
+			@RequestParam("diachi") String diachi,
+			@RequestParam("ten") String tennhan
+			) {
 			Order order = orderDao.findByMaOrder(maOrder);
 			System.out.println(order.getTrangthai());
 			order.setTrangthai("dangGiao");
+			order.setDiachi(diachi);
+			order.setTennguoinhan(tennhan);
 			orderDao.save(order);
 		
 		return "cart";

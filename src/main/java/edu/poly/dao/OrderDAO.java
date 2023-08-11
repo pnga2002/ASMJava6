@@ -10,5 +10,6 @@ public interface OrderDAO extends JpaRepository<Order, Integer>{
 	Order findByMaND(String username);
 	@Query("Select o From Order o Where o.maorder = ?1")
 	Order findByMaOrder(Integer username);
-	
+	@Query("Select count(o) From Order o Where o.trangthai=?1")
+	Integer totalDagiao(String value);
 }

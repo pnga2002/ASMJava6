@@ -66,7 +66,7 @@
 											<h2 class="h5 text-black" th:text="${item[0]}">Top Up
 												T-Shirt</h2>
 										</td>
-										<td th:text="${item[3]}">$49.00</td>
+										<td th:text="${#numbers.formatDecimal(item[3], 0, 'COMMA', 0, 'POINT')} + 'VND'">$49.00</td>
 										<td>
 											<div class="input-group mb-3" style="max-width: 120px;">
 												<div class="input-group-prepend">
@@ -94,8 +94,9 @@
 												<span class="icon icon-edit"></span>
 											</button></td>
 										<td>
-											<button th:attr="onclick=|orderCart(${item[6]})|"
-												class="btn btn-info btn-sm">Order</button>
+											<button th:attr="onclick=|themDiaChi(${item[6]})|"
+												class="btn btn-info btn-sm" type="button" data-toggle="modal"
+									data-target="#myModal">Order</button>
 										</td>
 									</tr>
 
@@ -161,6 +162,68 @@
 				</div>
 			</div>
 		</div>
+		<!-- The Modal -->
+	<div class="modal fade" id="myModal" style="padding-top: 200px">
+		<div class="modal-dialog" style="padding: 10px">
+			<div class="modal-content">
+
+				<header class="head-form my-2">
+					<h2 id="header-title">ORDER</h2>
+				</header>
+
+				<!-- Modal body -->
+				<div class="modal-body">
+
+					<form role="form">
+						<div class="form-group">
+							<div class="input-group">
+								<div class="input-group-prepend">
+									<span class="input-group-text"><i class="fa fa-user"></i></span>
+								</div>
+								<input type="text" id="maorder"
+									class="form-control input-sm" placeholder="Mã Order" >
+							</div>
+
+							<span class="sp-thongbao" id="maSP"></span>
+						</div>
+
+						<div class="form-group">
+							<div class="input-group">
+								<div class="input-group-prepend">
+									<span class="input-group-text"><i
+										class="fa fa-address-book"></i></span>
+								</div>
+								<input th:name="tenloai"  type="text" id="diachi"
+									class="form-control input-sm" placeholder="Nhập địa chỉ nhận hàng">
+
+							</div>
+						</div>
+						<div class="form-group">
+							<div class="input-group">
+								<div class="input-group-prepend">
+									<span class="input-group-text"><i
+										class="fa fa-address-book"></i></span>
+								</div>
+								<input th:name="tenloai"  type="text" id="tenNhan"
+									class="form-control input-sm" placeholder="Nhập tên người nhận hàng">
+
+							</div>
+						</div>
+
+						
+						<div class="modal-footer" id="modal-footer">
+							<button th:attr="onclick=|orderCart()|" id="btnThemNV"  class="btn btn-success">Order</button>
+							<button id="btnDong" type="button" class="btn btn-danger"
+								data-dismiss="modal">Đóng</button>
+						</div>
+					</form>
+				</div>
+
+
+
+			</div>
+		</div>
+	</div>
 		<div th:insert="~{include/_Footer}"></div>
 
 	</div>
@@ -198,13 +261,18 @@
      		    }
      		  });  
      	}
-		orderCart=(maOrder)=>{
-     		
+		orderCart=()=>{
+
+			var maOrder = document.getElementById("maorder").value
+			var diachi = document.getElementById("diachi").value
+			var ten = document.getElementById("tenNhan").value
      		 $.ajax({
      		    url: '/orderCart',
      		    type: 'POST',
      		    data: {
-     		    	maOrder:maOrder
+     		    	maOrder:maOrder,
+     		    	diachi:diachi,
+     		    	ten:ten
      		    },
      		    success: function(response) {
      		      alert('Đã đặt hàng thành công')
@@ -214,6 +282,14 @@
      		    	alert('Đặt hàng thất bại')
      		    }
      		  });  
+     	}
+		themDiaChi=(maOrder)=>{
+
+			document.getElementById("maorder").value = maOrder;
+
+			document.getElementById("maorder").readOnly = true
+			console.log(maOrder)
+			
      	}
 	});
 	</script>

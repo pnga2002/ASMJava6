@@ -30,6 +30,12 @@ public class Product implements Serializable{
 	Double dongia;
 	String mota;
 	String hinhanh;
+	String baohanh;
+	String thehecpu;
+	String cpu;
+	String chipdohoa;
+	String ram;
+	String manhinh;
 	@ManyToOne
 	@JoinColumn(name = "maloai")
 	Category category;
