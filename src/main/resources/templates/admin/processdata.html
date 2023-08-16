@@ -117,7 +117,7 @@
                 <span>User</span></a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" href="/admin/category">
+            <a class="nav-link" href="/admin/tablecategory">
                 <i class="fas fa-fw fa-table"></i>
                 <span>Category</span></a>
         </li>
@@ -379,7 +379,7 @@
                                 <div class="container">
                                     <div class="row">
                                         <div style="display: inline-block" class="col-md-6">
-                                            <img th:src="'/images/' + ${product.hinhanh}" alt="Image" class="img-fluid">
+                                            <img style="width: 200px;" th:src="'/images/' + ${product.hinhanh}" alt="Image" class="img-fluid">
                                         </div>
                                         <form style="display: contents" method="post" th:action="@{/admin/post/addproduct}"  th:object="${product}" enctype="multipart/form-data" >
                                             <div class="col-md-6">

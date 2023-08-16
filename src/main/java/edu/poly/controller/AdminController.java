@@ -120,7 +120,7 @@ public class AdminController {
 			productDAO.save(product);
 		}
 
-		return "redirect:/admin/index";
+		return "redirect:/admin/product";
 	}
 	@PostMapping("/admin/create/addproduct")
 	public String addProduct(@ModelAttribute Product product,@RequestParam("category.tenloai")String tenloai, @RequestParam("image") MultipartFile imageFile) throws Exception {

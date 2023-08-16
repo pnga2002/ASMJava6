@@ -117,7 +117,7 @@
                     <span>User</span></a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="/admin/category">
+                <a class="nav-link" href="/admin/tablecategory">
                     <i class="fas fa-fw fa-table"></i>
                     <span>Category</span></a>
             </li>
@@ -403,7 +403,7 @@
                                         <td th:text="${item.tenSP}"></td>
                                             <td th:text="${#numbers.formatDecimal(item.dongia, 0, 'COMMA', 2, 'POINT')}"></td>
                                             <td th:text="${item.mota}"></td>
-                                            <td><img th:src="'/images/' + ${item.hinhanh}"></td>
+                                            <td><img style="width: 200px;" th:src="'/images/' + ${item.hinhanh}"></td>
                                             <td th:text="${item.soluong}"></td>
                                             <td th:text="${item.tenloai}"></td>
                                             <td style="width: 10%;text-align: center">
